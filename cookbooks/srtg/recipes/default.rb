@@ -6,3 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+rightscale_marker :begin
+
+
+rightscale_marker :end
