@@ -1,0 +1,37 @@
+#!/bin/sh
+#set -x 
+
+SYSMASTER_HOME=<%= @sysmaster_home %>
+################## SYSMASTER_HOME ######################
+if [ -z  $SYSMASTER_HOME ]; then 
+    SYSMASTER_HOME=/opt/sysmaster
+fi
+
+SYSMASTER_BIN=$SYSMASTER_HOME/bin
+SYSMASTER_LIB_HOME=$SYSMASTER_HOME/lib
+
+################## JAVA_HOME ######################
+if [ -z $JAVA_HOME ]; then 
+    JAVA_HOME=/usr/java5
+fi
+
+JRE_HOME=$JAVA_HOME/jre
+
+################## DATABASE_LIB ######################
+DATABASE_LIB=$SYSMASTER_LIB_HOME/ojdbc14.zip:$SYSMASTER_LIB_HOME/db2jcc_license_cu.jar:$SYSMASTER_LIB_HOME/db2jcc.jar
+
+################## SYSMASTER CORE LIB ######################
+SYSMASTER_CORE_LIB=$SYSMASTER_LIB_HOME/smcore.jar
+
+################## SYSMASTER BO LIB ######################
+SYSMASTER_BO_LIB=$SYSMASTER_LIB_HOME/smbo.jar
+
+################## SYSMASTER WEB LIB ######################
+SYSMASTER_WEB_LIB=$SYSMASTER_HOME/portal/WEB-INF/classes
+
+################## SYSMASTER EXTERNAL LIB ######################
+SYSMASTER_EXT_LIB=$JAVA_HOME/lib/tools.jar:$SYSMASTER_LIB_HOME/servlet-api.jar:.:$SYSMASTER_LIB_HOME/xalan.jar:$SYSMASTER_LIB_HOME/xerces.jar:$SYSMASTER_LIB_HOME/oreilly.jar:$SYSMASTER_LIB_HOME/crimson.jar:$SYSMASTER_LIB_HOME/symantec.jar:$SYSMASTER_LIB_HOME/jaxp.jar:$SYSMASTER_LIB_HOME/mssqllib.zip:$SYSMASTER_LIB_HOME/mail.jar:$SYSMASTER_LIB_HOME/castor-0.9.jar:$SYSMASTER_LIB_HOME/activation.jar:$SYSMASTER_LIB_HOME/Acme.jar:$SYSMASTER_LIB_HOME/chart.jar:$SYSMASTER_LIB_HOME/AdventNetLogging.jar:$SYSMASTER_LIB_HOME/AdventNetSnmp.jar:$SYSMASTER_LIB_HOME/AdventNetUtils.jar:$SYSMASTER_LIB_HOME/ApiUtils.jar:$SYSMASTER_LIB_HOME/pop3.jar:$SYSMASTER_LIB_HOME/NetComponents.jar:$SYSMASTER_LIB_HOME/ifxjdbc.jar:$SYSMASTER_LIB_HOME/PerlTools.jar:$SYSMASTER_LIB_HOME/oroinc.jar:$SYSMASTER_LIB_HOME/ireasoningsnmp.jar
+TL1_LIB=$SYSMASTER_LIB_HOME/AdventNetNPrevalent.jar:$SYSMASTER_LIB_HOME/AdventNetTL1.jar:$SYSMASTER_LIB_HOME/AdventNetTL1Tools.jar:$SYSMASTER_LIB_HOME/AdventNetJta.jar:$SYSMASTER_LIB_HOME
+
+################## SET CLASSPATH ######################
+CLASSPATH=$SYSMASTER_CORE_LIB:$SYSMASTER_BO_LIB:$SYSMASTER_WEB_LIB:$DATABASE_LIB:$SYSMASTER_EXT_LIB:

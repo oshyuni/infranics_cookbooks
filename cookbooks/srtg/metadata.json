@@ -1,0 +1,29 @@
+{
+  "platforms": {
+  },
+  "maintainer": "YOUR_COMPANY_NAME",
+  "name": "srtg",
+  "version": "0.1.0",
+  "groupings": {
+  },
+  "replacing": {
+  },
+  "suggestions": {
+  },
+  "recipes": {
+  },
+  "providing": {
+  },
+  "conflicting": {
+  },
+  "dependencies": {
+  },
+  "attributes": {
+  },
+  "license": "All rights reserved",
+  "recommendations": {
+  },
+  "description": "Installs/Configures srtg",
+  "maintainer_email": "YOUR_EMAIL",
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n"
+}

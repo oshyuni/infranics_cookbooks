@@ -1,0 +1,49 @@
+#!/bin/sh
+#set -x 
+
+SYSMASTER_HOME=<%= @sysmaster_home %>
+if [ -r $SYSMASTER_HOME/bin/setAllEnv.sh ]; then
+    . $SYSMASTER_HOME/bin/setAllEnv.sh
+else
+    echo "Cannot find $SYSMASTER_HOME/bin/setAllEnv.sh"
+    echo "This file is needed to run this program"
+exit 1
+fi
+
+# RMI Service
+. $SYSMASTER_HOME/bin/startRTService.sh start
+. $SYSMASTER_HOME/bin/startSnmpService.sh start
+. $SYSMASTER_HOME/bin/startQueryService.sh start
+. $SYSMASTER_HOME/bin/startDataService.sh start
+
+# Common Service
+. $SYSMASTER_HOME/bin/startBOSVC.sh start
+. $SYSMASTER_HOME/bin/startMAPD.sh start
+#. $SYSMASTER_HOME/bin/startTopo3DSVC.sh start
+. $SYSMASTER_HOME/bin/startPingCollector.sh start
+. $SYSMASTER_HOME/bin/startMultiChartSVC.sh
+
+# SMS Service
+. $SYSMASTER_HOME/bin/startMCCD.sh start
+. $SYSMASTER_HOME/bin/startApmSVC.sh start
+. $SYSMASTER_HOME/bin/startDBASVC.sh start
+#. $SYSMASTER_HOME/bin/startFmsService.sh start
+
+# NMS Service
+. $SYSMASTER_HOME/bin/startNMSSVC.sh start
+. $SYSMASTER_HOME/bin/startNMSRTCollector.sh start
+. $SYSMASTER_HOME/bin/startPmibCollector.sh start
+. $SYSMASTER_HOME/bin/startMymibCollector.sh start
+. $SYSMASTER_HOME/bin/startMymibRTCollector.sh start
+. $SYSMASTER_HOME/bin/startNFlowService.sh start
+. $SYSMASTER_HOME/bin/startSMSRTSVC.sh start
+
+# MOM Service
+#. $SYSMASTER_HOME/bin/startCUpdateService.sh start
+#. $SYSMASTER_HOME/bin/startCUploadService.sh start
+#. $SYSMASTER_HOME/bin/startCDownloadService.sh start
+#. $SYSMASTER_HOME/bin/startPUpdateService.sh start
+#. $SYSMASTER_HOME/bin/startPUploadService.sh start
+#. $SYSMASTER_HOME/bin/startPDownloadService.sh start
+
+#. $SYSMASTER_HOME/bin/startSysMasterMgmt.sh start
