@@ -11,7 +11,6 @@ rightscale_marker :begin
 
 
 log "  Setting provider specific settings for SRTG core."
-node[:app][:provider] = "srtg_core"
 
 log "Loading File SRTG core..."  
 remote_file "/tmp/SRTG_core.tar.gz" do    
@@ -26,19 +25,18 @@ log "Unpacking SRTG core..."
 bash "untar_srtg_core" do
     user "root"
     cwd "/tmp"    
-    code << -EOM      
-        mkdir /usr/msi/srtg_core
-        tar zxf SRTG_core.tar.gz --strip=1 -C /usr/msi/srtg_core
-        cd node[:srtg_core][:install_dir]
-        cp node[:srtg_core][:install_file] node[:srtg_core][:install_dir]/
-        tar -xvf node[:srtg_core][:install_file]
-        mkdir -p node[:srtg_core][:install_dir]/logs
-        mkdir -p node[:srtg_core][:install_dir]/SM-DATA
-        chmod 774 node[:srtg_core][:install_dir]/logs
-        chmod 774 node[:srtg_core][:install_dir]/SM-DATA
-    EOM    
+    code <<-EOM
+        mkdir #{node[:srtg_core][:install_dir]}
+        tar zxf SRTG_core.tar.gz --strip=1 -C #{node[:srtg_core][:install_dir]}
+        cd #{node[:srtg_core][:install_dir]}
+        tar -xvf #{node[:srtg_core][:install_file]}
+        mkdir -p #{node[:srtg_core][:install_dir]}/logs
+        mkdir -p #{node[:srtg_core][:install_dir]}/SM-DATA
+        chmod 774 #{node[:srtg_core][:install_dir]}/logs
+        chmod 774 #{node[:srtg_core][:install_dir]}/SM-DATA
+    EOM
     not_if { ::File.exists?("#{node[:srtg_core][:install_dir]}/bin") }  
-end  
+end
 
 template "#{node[:srtg_core][:install_dir]}/conf/portal.conf" do    
     source "portal.conf.erb"    
@@ -139,20 +137,20 @@ log "install SRTG core..."
 bash "install_something" do
     user "root"
     cwd "/tmp"
-    code << -EOH
-        chmod +x node[:srtg_core][:install_dir]/bin/sm70StartAll.sh
-        chmod +x node[:srtg_core][:install_dir]/bin/sm70StopAll.sh
-        chmod +x node[:srtg_core][:install_dir]/bin/setAllEnv.sh
-        chmod +x node[:srtg_core][:install_dir]/tomcat5.5/bin/catalina.sh
+    code <<-EOM
+        chmod +x #{node[:srtg_core][:install_dir]}/bin/sm70StartAll.sh
+        chmod +x #{node[:srtg_core][:install_dir]}/bin/sm70StopAll.sh
+        chmod +x #{node[:srtg_core][:install_dir]}/bin/setAllEnv.sh
+        chmod +x #{node[:srtg_core][:install_dir]}/tomcat5.5/bin/catalina.sh
         chmod +x /etc/init.d/SysMaster70d
         ln -s /etc/init.d/SysMaster70d /etc/rc2.d/S99SysMaster70d
         ln -s /etc/init.d/SysMaster70d /etc/rc3.d/S99SysMaster70d
         ln -s /etc/init.d/SysMaster70d /etc/rc5.d/S99SysMaster70d
-        ln -s /etc/init.d/SysMaster70d node[:srtg_core][:install_dir]/bin/SysMaster70d
-        chmod +x node[:srtg_core][:install_dir]/bin/*.sh
-        chown -R root node[:srtg_core][:install_dir] 
-        chgrp -R sys node[:srtg_core][:install_dir] 
-    EOH
+        ln -s /etc/init.d/SysMaster70d #{node[:srtg_core][:install_dir]}/bin/SysMaster70d
+        chmod +x #{node[:srtg_core][:install_dir]}/bin/*.sh
+        chown -R root #{node[:srtg_core][:install_dir]}
+        chgrp -R sys #{node[:srtg_core][:install_dir]}
+    EOM
 end
 
 rightscale_marker :end
