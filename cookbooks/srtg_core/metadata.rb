@@ -13,12 +13,6 @@ depends "rightscale"
 recipe  "srtg_core::default", "Installs the SRTG server."
 
 # Required Input #
-attribute "srtg_core/master_ip",
-    :display_name => "Master IP",
-    :description => "The Master IP address is SRTG core.",
-    :required => "required",
-    :recipes => ["srtg_core::default"]
-
 attribute "srtg_core/database_ip",
     :display_name => "Database IP",
     :description => "The Database IP address is SRTG core.",

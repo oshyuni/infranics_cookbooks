@@ -10,6 +10,7 @@ default["srtg_core"]["source"]           = "https://s3-ap-southeast-1.amazonaws.
 default["srtg_core"]["source_sha256"]    = "0c7c1f2603b53ab8c9ebdb9881c4a833aad7852b23dc650df5216b468fe914a8"
 
 # install attributes
+default["srtg_core"]["master_ip"]        = node[:cloud][:public_ips][0]
 default["srtg_core"]["install_dir"]      = "/usr/SysMaster70"
 default["srtg_core"]["install_file"]     = "SysMaster70_Linux*.tar"
 
