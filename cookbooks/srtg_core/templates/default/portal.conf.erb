@@ -1,0 +1,1384 @@
+##################################################################################################################################################################################################
+# 1.SysMaster ?âº»??Á¤(È¨?????ä¸®/DB??Á¤(Á¢??Á¤??,????SQL????)/TIMEZONE/?Ö¿???Æ®/??Á¤???Ï¸?)/?Î±×·???/????/????
+##################################################################################################################################################################################################
+base.dir=<%= @sysmaster_home %> 
+win.dir=C:/WINDOWS
+product.type=3
+product.os.type=WINDOWS
+
+server.timezone=GMT+09:00
+server.database.timezone=GMT+09:00
+server.database.timezone.offset=+09:00
+server.datafile.timezone=GMT+09:00
+
+server.web.charset.name=iso-8859-1
+server.database.charset.name=euc-kr
+
+server.web.host=<%= @master_ip %>
+server.web.port=2032
+server.cgi.port=2001
+server.map.port=9605
+server.mcc.port=9606
+mcc.agent.connect.timeout=120
+
+
+# repor ???? ?Ð¸??? ???? ????
+server.asp.ip=localhost
+server.asp.port=2001
+
+server.web.doc.dir=<%= @sysmaster_home %>/portal
+server.web.logo.dir=/snet/msp/company/logo
+server.web.logo.temp=/snet/msp/company/logo
+server.web.skin.dir=/skin/default
+
+#registry
+win.registry.dir=SOFTWARE\\SysMaster5.4\\
+win.registry.ping.interval=PingInterval
+win.registry.ping.respinterval=PingRespInterval
+win.registry.http.interval=HttpInterval
+win.registry.port.interval=PortInterval
+
+# Service Shell
+server.system.service.shell.start=<%= @sysmaster_home %>/bin/servicestart.bat
+server.system.service.shell.restart=<%= @sysmaster_home %>/bin/servicerestart.bat
+server.system.service.shell.stop=<%= @sysmaster_home %>/bin/servicestop.bat
+
+# sysmaster database
+# version 1~8i, 2~9i
+server.database.version=2
+server.database.driver=oracle.jdbc.driver.OracleDriver
+server.database.url=jdbc:oracle:thin:@<%= @database_ip %>:<%= @database_port %>:<%= @database_sid %>
+server.database.host=<%= @database_ip %>
+server.database.user=<%= @database_user %>
+server.database.password=$$C001$$bWFzdGVy
+server.database.port=<%= @database_port %>
+server.database.dsn=<%= @database_sid %>
+server.database.pool.maxconn=10
+# oracle pool connection timeout seconds
+# if timeout is 0, then don't apply timeout
+server.database.pool.conn.timeout=5
+server.database.service.name=OracleServiceUMA
+server.database.lsnr.name=OracleOraHome92TNSListener
+
+# data source bean id
+server.datasource.bean.id.default=dataSource-web
+server.datasource.bean.id.topo3d=dataSource-topo3d
+server.datasource.bean.id.mapd=dataSource-mapd
+server.datasource.bean.id.mccd=dataSource-mccd
+server.datasource.bean.id.syslog=dataSource-syslog
+server.datasource.bean.id.mymib=dataSource-mymib
+server.datasource.bean.id.nflow=dataSource-nflow
+server.datasource.bean.id.multichart=dataSource-multichart
+server.datasource.bean.id.smsrt=dataSource-smsrt
+
+## mysql dbÁ¤??
+mysql.database.ip=localhost
+mysql.database.port=3306
+mysql.database.dbname=wind
+mysql.database.user=wind
+mysql.database.pwd=master
+
+
+## mssql dbÁ¤??
+server.database.mssql.url=jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=ETMS
+server.database.mssql.user=usretms
+server.database.mssql.password=usretms
+server.database.mssql.timeout.secs=10
+
+
+# sms database
+sms.database.driver=oracle.jdbc.driver.OracleDriver
+sms.database.url=jdbc:oracle:thin:@<%= @database_ip %>:<%= @database_port %>:<%= @database_sid %>
+sms.database.host=<%= @database_ip %>
+sms.database.user=<%= @database_user %>
+sms.database.password=<%= @database_passwd %>
+sms.database.port=<%= @database_port %>
+sms.database.dsn=<%= @database_sid %>
+
+
+# 0~ networks, 1~ lgtelecom  ,5~ arreo, 6 ~ bpa
+event.sms.method=0
+event.sms.from.phone=011-1111-1111
+event.auto.insert=N
+event.finder.name=SysMaster
+event.auto.recovery.interval.days=10
+
+# event mail
+server.smtp.host=127.0.0.1
+server.smtp.auth=N
+server.smtp.username=
+server.smtp.password=
+server.smtp.debug=N
+server.manager.name=SysMaster
+server.manager.email=sysmaster@infranics.com
+
+
+
+# batch sql
+server.batch.sql.dir=<%= @sysmaster_home %>/sql
+server.batch.sql.sms=uma_batch_hourly.sql
+server.batch.sql.nms=net_batch_hourly.sql
+server.batch.sql.alteon=net_alteon_batch_hourly.sql
+server.batch.sql.apm=apm_batch_hourly.sql
+server.batch.sql.vpn=net_vpn_nortel_batch_hourly.sql
+server.batch.sql.optic=optic_batch_hourly.sql
+server.batch.sql.month.table=create_month_table.sql
+server.batch.sql.traffic.month.table=create_traffic_month_table.sql
+server.batch.sql.traffic.month.drop.table=drop_traffic_month_table.sql
+server.batch.sql.line.daily=compac_line_daily.sql
+server.batch.sql.dev.daily=compac_dev_daily.sql
+server.batch.sql.pmib.daily=compac_pmib_daily.sql
+server.batch.sql.ping.daily=compac_ping_daily.sql
+server.batch.sql.line.biz.daily=compac_line_biz_daily.sql
+server.batch.sql.dev.biz.daily=compac_dev_biz_daily.sql
+server.batch.sql.pmib.biz.daily=compac_pmib_biz_daily.sql
+server.batch.sql.ping.biz.daily=compac_ping_biz_daily.sql
+
+# config file name
+server.conf.oracle=dbmonora.ini
+server.conf.mssql=dbmonsql.ini
+server.conf.http=urltab.ini
+server.conf.ping=hosttab.ini
+server.conf.port=porttab.ini
+server.conf.common=infrauma.ini
+
+
+# log
+server.log.debug=Y
+server.log.debug.level=1
+
+# Systme Type
+server.sms.system.type=1,4,7,12,60,61,66
+server.nms.system.type=2,3,4,5,6,7,8,9,10,11,12,13,30,31,32,33,34,35,36,37,38
+server.other.system.type=50
+
+
+
+##################################################################################################################################################################################################
+# 2.?Ö¿? ?????ä¸® ???? 
+##################################################################################################################################################################################################
+
+# data directory
+server.sms.data.dir=<%= @sysmaster_home %>/SM-DATA/data
+server.nms.easydata.dir=<%= @sysmaster_home %>/SM-DATA/easydata
+server.nms.data.dir=<%= @sysmaster_home %>/SM-DATA/nmsdata
+server.syslog.data.dir=<%= @sysmaster_home %>/SM-DATA/syslog
+server.trap.data.dir=<%= @sysmaster_home %>/SM-DATA/trapdata
+server.ping.data.dir=<%= @sysmaster_home %>/SM-DATA/PingData
+server.nms.mymib.data.dir=<%= @sysmaster_home %>/SM-DATA/mymibdata
+server.ftp.dir=C:/Inetpub/ftproot
+server.sysdata.dir=<%= @sysmaster_home %>/SM-DATA/data
+server.nmsdata.dir=<%= @sysmaster_home %>/SM-DATA/nmsdata
+server.easydata.dir=<%= @sysmaster_home %>/SM-DATA/easydata
+server.pingdata.dir=<%= @sysmaster_home %>/SM-DATA/PingData
+
+
+# data file backup
+server.sms.data.backup=N
+server.sms.loader.data.backup=N
+server.nms.data.backup=Y
+server.nms.easydata.backup=N
+server.nms.loader.data.backup=N
+server.nms.mymib.data.backup=N
+
+# sqlldr configuration
+server.loader.cmd=sqlldr
+server.sms.loader.data.dir=<%= @sysmaster_home %>/SM-DATA/loaddata
+server.sms.loader.interval=5
+server.nms.loader.data.dir=<%= @sysmaster_home %>/SM-DATA/loaddata
+server.nms.loader.interval=5
+
+
+server.httpscen.dir=<%= @sysmaster_home %>/conf/httpscen
+server.httpscen.temp=<%= @sysmaster_home %>/conf/httpscentemp
+
+server.devconfig.dir=/sm_network/devconfig
+server.devconfig.timeout=5000
+
+server.board.dir=/board/board/download
+server.board.temp=/board/board/temp
+server.notice.dir=/board/notice/download
+server.notice.temp=/board/notice/temp
+server.qna.dir=/board/qna/download
+server.qna.temp=/board/qna/temp
+server.pds.dir=/board/pds/download
+server.pds.temp=/board/pds/temp
+server.upgrade.dir=/board/upgrade/download
+server.upgrade.temp=/board/upgrade/temp
+server.spm.dir=/board/spm/download
+server.spm.temp=/board/spm/temp
+#?î¿µ???? dir
+server.diary.dir=/sm_diary/download
+server.diary.temp=/sm_diary/temp
+
+#sunbun
+server.nms.sunbun.dir=/sm_network/download
+server.nms.sunbun.temp=/sm_network/temp
+
+server.mapimg.dir=/map/download
+server.mapimg.temp=/map/temp
+
+server.faultrpt.attatch.dir=/sm_fault/download
+server.faultrpt.attatch.temp=/sm_fault/temp
+
+
+
+
+###?????? ???È°?Á¦ ???? ???Îµ? ????
+server.ticket.dir=/sm_security/download
+# ?????? map ???? ???Îµ? ????
+server.ws.map.dir=/sm_security/download/map
+# ???È¼?????  ???? ???Îµ? ????
+server.secu.exam.dir=/sni/secu_exam/download
+server.secu.exam.mail.dir=D:/smworkspace/SysMaster5.5/sm_web/SMAIL/mailfolder
+
+#mySingleKey directory
+mysinglekey.dir=<%= @sysmaster_home %>/conf
+
+#########################################################################################################################################################################
+# 3.MAP ??Á¤(2D/3D) , MCC
+#########################################################################################################################################################################
+
+# MAP
+server.map.dir=<%= @sysmaster_home %>/map
+server.map.UseFaultManual=0
+
+## FireWall ?????? ????Á¤????  SNMP?? ????????, ????Á¤?? È­?? ????, MAP Daemon???? ???? 
+server.map.ISCollectFirewallBySNMP=0        
+server.map.UseL4Switching=0        
+server.map.xml.dir=<%= @sysmaster_home %>/map/xml
+server.map.image.dir=<%= @sysmaster_home %>/map/image
+server.map.backup.dir=<%= @sysmaster_home %>/map/backup
+server.map.temp.dir=<%= @sysmaster_home %>/map/temp
+server.map.file.delimeter=/
+
+
+## Order : N - Name, I - ????????(ID)
+server.map.Order=N
+server.netsmapi.data.dir=<%= @sysmaster_home %>/SM-DATA/netsmdata
+
+# Topology 3D Map
+server.topo3d.debug.level=2
+server.topo3d.port=9641
+
+# 3d image
+server.map3d.vertex.image.dir=/map3d/vertex
+server.map3d.vertex.image.temp=/map3d/temp
+
+# MCC Daemon
+mcc.daemon.port=9606
+mcc.displaydevloading.enable=N
+mysinglekey.dir=<%= @sysmaster_home %>/conf
+mcc.agent.configuration.update=N
+server.mcc.file.delimeter=/
+
+#########################################################################################################################################################################
+# 4.Syslog/Trap ??Á¤
+#########################################################################################################################################################################
+#syslog
+server.syslog.debug.level=2
+server.syslog.evt.viewer.insert=N
+#?????? ??Æ®?????? ?ß°?
+server.syslog.string.filter.device.enable=N
+
+# trap configuration
+server.trap.debug.level=1
+server.trap.community=public
+server.trap.port=162
+# Y~Á¤Ã¥??Á¤?????? ?????ëº¸ + Á¤Ã¥??Á¤??????Àº?×¸?Àº warningÀ¸???ëº¸
+server.trap.event.all=N
+server.trap.conf.atm=trapd.conf
+server.trap.conf.mapping=trapmp.conf
+server.trap.conf.spprs=trapprs.conf
+server.trap.action.common.max.threads=1
+server.trap.action.common.max.queue.length=100000
+server.trap.action.wlan.max.threads=1
+server.trap.action.wlan.max.queue.length=100000
+server.trap.action.proxy.target.host=localhost
+server.trap.action.proxy.target.port=3030
+
+#########################################################################################################################################################################
+# 5.Event ??Á¤
+#########################################################################################################################################################################
+
+# SysMaster event configuration
+# event policy
+event.popup.port=20006
+event.receiver.port=9603
+event.receiver.ip=localhost
+event.receiver.policy.refresh.secs=300
+event.receiver.event.expire.secs=60
+event.converter.port=9604
+event.converter.ip=localhost
+
+#CLASS|ATTR => PING|AVAIL,LINE_LINKUPDOWN|-
+sms.clear.event.class=PING|AVAIL
+
+
+#Integrate Event Sequence File Directory
+server.event.integ.dir=/sm_fault/temp
+
+######################################################
+## GLOBAL Database Configuration - export_config.xml
+######################################################
+global.export.performance.debug.level=1
+global.export.performance.interval.secs=60
+
+#########################################################################################################################################################################
+# 6.web È­?? ?É¼? Ã³??
+#########################################################################################################################################################################
+#?????? ?É¼?Ã³?? : 0- ?????×´???,1-?ë¹®??,2-?Ò¹???
+server.sysname.reg.mode=0
+
+
+# ????Æ®Å¾?? ??Æ® ?Ì¿??? ?Ì¿ë·® ?É¼? 1:?Ì¿??? 2:?Ì¿ë·®
+server.nms.worsttop.chart.option=1
+server.nms.worsttop.orderby.option=1
+
+# UPLINK ?É¼? 1:??Ã¼, 2:UPLINK??????, 3:UPLINKÁ¦??
+server.nms.worsttop.uplink.option=1
+
+#?ë½¬???? ??Æ®??Å©TopNÈ­?? PortÇ¥??(1:port_name, 2:port_alias)
+server.dashboard.portname=2
+
+
+#???????Ï½? Ping??Á¤ ?É¼?
+server.regist.ping.coll.enable=N
+
+#SNMP ??Á¤ ???? ?Ê´? ???? ?À´??Ã°? ????
+nms.nosnmp.ping.perf.enable=Y
+
+
+#?ë½¬???? value mode 1:max, 2:avg
+dsc.dashboard.topn.mode=
+
+##????Import???Ñ±Û±?????1-db2web,2-web2db,3-normal
+excel.upload.char=1
+
+
+#?ó¼¼¼??? ?â°£ Á¤?? ?âº»??
+#1=asc,2=desc
+detailperf.time.default.sort=2
+
+#??????IP????
+user.ip.auth=N
+
+# UI option
+ui.compare.chart.max.num=5
+ui.dashboard.contents.max=6
+ui.bizgroup.port.max=10
+ui.traffic.topn=50
+
+#???? ?Ë»? Á¶?? N=0?Ãº??? Y=24?Ã°? ??????
+respective.items.performance=Y
+
+
+# group server
+server.groupserver.duplex=Y
+
+#?ß°??×¸?Àº ?????Úµ?È­?Ï¿? Á¶È¸Á¶??À¸?? È°???Ñ´?.
+server.add.item.enable=N
+server.add.item.count=1
+server.add.item.comm.gu.1=DEV_ITEM1
+server.add.item.comm.gu.2=DEV_ITEM2
+server.add.item.comm.gu.3=DEV_ITEM3
+server.add.item.comm.gu.4=DEV_ITEM4
+server.add.item.comm.gu.5=DEV_ITEM5
+#?ß°??????×¸?À» Á¤???Ï¿? ????Æ®???? ??Äª??À» ???Ø¿Ã¶? È°???Ñ´?.
+server.add.field.enable=N
+server.add.field.comm.gu.id=DEV_ADD
+server.add.field.comm.cd.id=DEV_ITEM_DETAIL1,DEV_ITEM_DETAIL2,DEV_ITEM_DETAIL3,DEV_ITEM_DETAIL4,DEV_ITEM_DETAIL5,DEV_ITEM_DETAIL6,DEV_ITEM_DETAIL7
+
+#?ß°??×¸?Àº ?????Úµ?È­?Ï¿? Á¶È¸Á¶??À¸?? È°???Ñ´?.
+line.add.item.enable=N
+line.add.item.count=1
+line.add.item.comm.gu.1=LINE_ITEM1
+line.add.item.comm.gu.2=LINE_ITEM2
+line.add.item.comm.gu.3=LINE_ITEM3
+line.add.item.comm.gu.4=LINE_ITEM4
+line.add.item.comm.gu.5=LINE_ITEM5
+#?ß°??????×¸?À» Á¤???Ï¿? ????Æ®???? ??Äª??À» ???Ø¿Ã¶? È°???Ñ´?.
+line.add.field.enable=N
+line.add.field.comm.gu.id=LINE_ADD
+line.add.field.comm.cd.id=LINE_ITEM_DETAIL1,LINE_ITEM_DETAIL2
+
+#???? Á¾?Õ¼??? ??Æ® AVG/MAX ?É¼?
+nms.chart.summary.standard=avg
+#########################################################################################################################################################################
+# 7.Ping Collector configuration 
+#########################################################################################################################################################################
+#?????? Ping ?????? ???? ??Á¤
+server.pingd.enable=Y
+
+
+# ??Á¡?? ?À´??Ã°? Ping Collector ??Á¤
+server.ping.debug.level=1
+server.ping.default.poll.period=60
+server.ping.default.resp.period=300
+server.ping.default.pkt.cnt=3
+server.ping.default.fail.sleep.milli=3000
+server.ping.default.timeout.sec=5
+server.ping.default.ttl=255
+server.ping.default.pkt.size=32
+server.ping.coll.bind.ip=127.0.0.1
+server.ping.coll.bind.enable=0
+server.ping.coll.gc.interval.secs=60
+server.ping.coll.loader.max.connections=1
+server.ping.avail.event.class=PING
+server.ping.avail.event.attr=AVAIL
+server.ping.avail.event.level=5
+server.ping.resp.event.class=PING
+server.ping.resp.event.attr=RESPTIME
+
+#########################################################################################################################################################################
+# 8.System configuration 
+#########################################################################################################################################################################
+#sms DataReceiver
+server.sms.datad.max.threads=20
+server.sms.datad.loader.commit.auto.enable=Y
+server.sms.datad.loader.commit.interval.secs=5
+server.sms.datad.file.delete=Y
+# DataReceiver Queue Max Size
+server.sms.datad.queue.max.size=5000
+# Real db connections = (server.sms.datad.loader.max.connections)*2
+server.sms.datad.loader.max.connections=5
+
+# SysMaster data receiver configuration
+data.receiver.port=9602
+data.receiver.ip=localhost
+data.receiver.policy.refresh.secs=300
+data.receiver.dup.device.check.enable=N
+data.converter.port=9996
+data.converter.ip=localhost
+
+
+
+#Agent ??Á¤
+agent.lstner.port=9601
+agent.control.port=9611
+agent.service.port=9601
+
+agent.proxy.port=9612
+agent.proxy.debug.level=2
+agent.proxy.enable=Y
+agent.proxy.relay.enable=Y
+
+agent.monitor.debug.level=1
+agent.monitor.max.threads=50
+agent.monitor.interval.secs=600
+agent.monitor.connection.timeout.secs=2
+agent.monitor.timeout.secs=10
+agent.monitor.retries=3
+agent.monitor.fail.wait.secs=60
+agent.monitor.autosync.enable=N
+# info=1, warning=2, minor=3, major=4, critical=5
+agent.monitor.event.level=1
+agent.config.max.threads=100
+agent.config.connection.timeout.secs=2
+agent.config.timeout.secs=10
+agent.config.retries=3
+agent.config.fail.wait.secs=10
+# info=1, warning=2, minor=3, major=4, critical=5
+agent.config.event.level=1
+agent.autosync.max.threads=100
+agent.autosync.interval.secs=60
+agent.autosync.delay.interval.mins=30
+# info=1, warning=2, minor=3, major=4, critical=5
+agent.autosync.event.level=1
+
+agent.execshell.max.threads=100
+agent.execshell.interval.secs=60
+
+agent.statusup.max.threads=1
+agent.statusup.interval.secs=300
+
+agent.datasync.max.threads=10
+
+#agent upgrade
+server.agentupgrade.dir=/agent/download
+server.agentupgrade.temp=/agent/temp
+
+# Agent Update Manager
+server.updatemgr.maxcount=10
+server.updatemgr.UpdatePeriod=5
+server.updatemgr.ElapsedDay=1
+server.updatemgr.updatetimeout=100
+
+
+# asset
+server.asset.data.dir=<%= @sysmaster_home %>/SM-DATA/assetdata
+server.asset.conf.vendor.mapping.sms=vendorsys.conf
+server.asset.conf.vendor.mapping.nms=vendornet.conf
+server.asset.conf.coll.enable=N
+server.asset.data.backup=Y
+server.asset.policy.refresh.secs=600
+# ip update mode 0 : No update, 1 : update
+server.asset.update.ip.mode=0
+
+# System Performance Port Data Insert Flag  Y:Insert(default) N:skip
+server.sms.data.insert.port=Y
+server.sms.data.insert.daemon=Y
+server.sms.syscommand.enable=Y
+
+
+
+
+#########################################################################################################################################################################
+# 9.Network configuration 
+#########################################################################################################################################################################
+
+# mgmt target porttype => <%= @sysmaster_home %>/conf/mgmt_porttype.txt : porttype List
+server.nms.coll.mgmt.porttype=6,22,117
+
+# java snmp configuration
+server.snmp.timeout=3000
+server.snmp.retries=1
+server.snmp.port=161
+server.snmp.conf.spprs=snmpprs.conf
+#server.snmp.sync.dispatcher=com.infranics.util.snmp.adventnet.SnmpSync
+server.snmp.sync.dispatcher=com.infranics.util.snmp.ireasoning.SnmpSync
+
+server.snmp.bind.local.address.enable=N
+server.snmp.bind.local.address=127.0.0.1
+server.snmp.bind.local.port=0
+
+# java realtime snmp
+server.snmp.realtime.timeout=2000
+server.snmp.realtime.retries=0
+server.snmp.realtime.port=161
+
+# java tl1 configuration
+server.tl1.timeout=5000
+server.tl1.retries=0
+
+
+# Search nms device
+# SearchDevice???? sysname?? ??????Æ®
+nms.search.only.sysname=N
+server.nms.dev.search.max.threads=50
+server.nms.dev.search.snmp.timeout=3000
+server.nms.dev.search.snmp.retries=1
+server.nms.dev.search.snmp.port=161
+server.nms.dev.search.ping.retries=1
+server.nms.dev.search.ping.fail.sleep.seconds=3
+server.nms.dev.search.ping.timeout.seconds=2
+server.nms.dev.search.ping.packet.byte.size=32
+server.nms.dev.search.ping.ttl=255
+
+# Search nms interface
+# mode =0 (???? ????), 1(gw.ip) , 2(server.nms.if.search.gw.ip)
+server.nms.if.search.mode=1
+server.nms.if.search.gw.ip=0.0.0.0
+
+# nms
+server.nms.debug.level=1
+server.nms.home.dir=<%= @sysmaster_home %>
+server.nms.calc.sum.interval=5
+server.nms.calc.net.max.threads=5
+server.nms.calc.net.gc.interval.secs=60
+server.nms.calc.ping.max.threads=5
+server.nms.calc.ping.gc.interval.secs=60
+server.nms.coll.vlan.except=
+server.nms.col.fdbaddr.enable=Y
+#SNMP CHECK MIB oid => sysoid=.1.3.6.1.2.1.1.2.0, sysName=.1.3.6.1.2.1.1.5.0
+server.nms.coll.check.snmp.oid=.1.3.6.1.2.1.1.2.0
+
+
+# Easy Collector
+server.nms.easy.coll.debug.level=1
+server.nms.easy.coll.snmp.timeout=3000
+server.nms.easy.coll.snmp.retries=1
+server.nms.easy.coll.snmp.port=161
+server.nms.easy.coll.max.threads=100
+server.nms.easy.coll.snmp.get.varbind.max=50
+# line up/down mode 1~adminStatus(2),OpStatus(2) => Down, 2~adminStatus(1),OpStatus(2) => Down
+server.nms.easy.coll.linkdown.mode=2
+server.nms.easy.coll.linkdown.admin.status=2
+server.nms.easy.coll.linkdown.oper.status=2,7
+server.nms.easy.coll.linkup.admin.status=1
+server.nms.easy.coll.linkup.oper.status=1,6
+# info=1, warning=2, minor=3, major=4, critical=5
+server.nms.easy.coll.linkdown.event.level=5
+server.nms.easy.coll.loader.max.connections=1
+server.nms.easy.coll.loader.max.queue.length=10000
+server.nms.easy.coll.status.update=Y
+server.nms.easy.coll.event.refresh.interval.secs=60
+
+
+# Nms Collector
+server.nms.net.coll.snmp.timeout=5000
+server.nms.net.coll.snmp.retries=1
+server.nms.net.coll.snmp.port=161
+server.nms.net.coll.max.threads=200
+server.nms.net.coll.loader.commit.auto.enable=Y
+server.nms.net.coll.loader.commit.interval.secs=5
+# Real db connections = (server.nms.net.coll.loader.max.connections)*2
+server.nms.net.coll.loader.max.connections=5
+server.nms.net.coll.loader.max.queue.length=100000
+server.nms.net.coll.snmp.get.varbind.max=50
+server.nms.net.coll.thread.max.interfaces=50
+#server.nms.net.coll.keeper.dispatcher=com.infranics.nms.collector.netcoll.keeper.NmsFileKeeper
+#server.nms.net.coll.keeper.dispatcher=com.infranics.nms.collector.netcoll.keeper.NmsMemoryKeeper
+#server.nms.net.coll.cache.dispatcher=com.infranics.nms.collector.netcoll.cache.NmsMemoryCache
+#server.nms.net.coll.keeper.dispatcher=com.infranics.nms.collector.netmaster5310.keeper.NmsFileKeeper
+#server.nms.net.coll.cache.dispatcher=com.infranics.nms.collector.netmaster5310.cache.NmsMemoryCache
+server.nms.net.coll.keeper.dispatcher=com.infranics.nms.collector.netcoll.keeper.NmsFileKeeper
+server.nms.net.coll.cache.dispatcher=com.infranics.nms.collector.netcoll.cache.NmsMemoryCache
+
+server.nms.net.coll.cache.database.dir=<%= @sysmaster_home %>/SM-DATA/nmscache
+server.nms.net.coll.heartbeat.max.interval.secs=600
+server.nms.net.coll.debug.host=
+server.nms.net.calc.max.threads=100
+server.nms.net.calc.config.refresh.interval.secs=60
+server.nms.net.coll.eventer.event.refresh.interval.secs=60
+server.nms.net.coll.eventer.baseline.refresh.interval.secs=30
+server.nms.net.coll.eventer.max.queue.length=100000
+# ?????? 5È¸?Õ°è¸¦ ?????Ï±?À§?Ø¼??? 6?? ????
+server.nms.net.coll.rrcache.capacity=6
+# ?????? ?Õ°? È½??
+server.nms.net.coll.variation.summation.count=5
+
+# Nms Port Collector
+server.nms.net.port.coll.snmp.timeout=5000
+server.nms.net.port.coll.snmp.retries=1
+server.nms.net.port.coll.snmp.port=161
+server.nms.net.port.coll.max.threads=50
+server.nms.net.port.coll.loader.commit.auto.enable=Y
+server.nms.net.port.coll.loader.commit.interval.secs=5
+# Real db connections = (server.nms.net.coll.loader.max.connections)*2
+server.nms.net.port.coll.loader.max.connections=1
+server.nms.net.port.coll.snmp.get.varbind.max=50
+server.nms.net.port.coll.thread.max.interfaces=50
+server.nms.net.port.calc.config.refresh.interval.secs=60
+server.nms.net.port.coll.wait.interval.milli=500
+
+
+# ?????? ?Õ°? È½??
+server.nms.net.port.coll.variation.summation.count=5
+
+# Nms Realtime Collector
+server.nms.net.rt.coll.debug.level=1
+server.nms.net.rt.coll.snmp.timeout=5000
+server.nms.net.rt.coll.snmp.retries=1
+server.nms.net.rt.coll.snmp.port=161
+server.nms.net.rt.coll.max.threads=100
+server.nms.net.rt.coll.loader.commit.auto.enable=Y
+server.nms.net.rt.coll.loader.commit.interval.secs=5
+# Real db connections = (server.nms.net.coll.loader.max.connections)*2
+server.nms.net.rt.coll.loader.max.connections=5
+server.nms.net.rt.coll.loader.max.queue.length=100000
+server.nms.net.rt.coll.snmp.get.varbind.max=50
+server.nms.net.rt.coll.thread.max.interfaces=30
+
+#server.nms.net.coll.keeper.dispatcher=com.infranics.nms.collector.netmaster5310.keeper.NmsFileKeeper
+server.nms.net.rt.coll.keeper.dispatcher=com.infranics.nms.collector.netcoll.keeper.NmsMemoryKeeper
+server.nms.net.rt.coll.cache.dispatcher=com.infranics.nms.collector.netcoll.cache.NmsMemoryCache
+server.nms.net.rt.coll.cache.database.dir=<%= @sysmaster_home %>/SM-DATA/nmscache
+server.nms.net.rt.coll.heartbeat.max.interval.secs=600
+server.nms.net.rt.coll.debug.host=
+server.nms.net.rt.calc.max.threads=20
+server.nms.net.rt.calc.config.refresh.interval.secs=60
+
+# ?Ç½Ã°?storage???? Cache ?ë·® (480???Ì¸? ?????Ö±? 5?Ê±???À¸?? 40??) 
+server.nms.net.rt.coll.rrcache.capacity=480  
+# ?Ç½Ã°?storage???? Cache ??????
+server.nms.net.rt.service.name.cache=realtimecache
+# ?Ç½Ã°?storage???? View ??????
+server.nms.net.rt.service.name.view=nmsrtview      
+# ?Ç½Ã°?storage???? ?????? Á¢?? IP
+server.nms.net.rt.service.host=localhost           
+# ?Ç½Ã°?storage???? ?????? Á¢?? ??Æ®
+server.nms.net.rt.service.port=1099
+# ?Ç½Ã°?storage???? Queue ??????                
+server.nms.net.rt.service.max.queue.length=100000   
+
+######################################################
+# SMS Realtime Collector
+######################################################
+
+server.sms.rt.coll.debug.level=1
+# ?Ã½??? ?Ç½Ã°????????? ?????? UDP ??Æ®
+server.sms.rt.coll.udp.port=9615			
+# agent ?Ç½Ã°? ???? ???? thread
+server.sms.rt.coll.max.threads=5        
+# ?Ç½Ã°? ???? check ???? ?Ã°?
+server.sms.rt.coll.keep.secs=60   
+# ?Ç½Ã°? ???? check sucess ???? ?Ã°?      
+server.sms.rt.coll.sleep.secs=10        
+# ?Ç½Ã°? ???? check faile ???? ?Ã°?
+server.sms.rt.coll.fail.sleep.secs=10   
+# ?Ã½??? ?Ç½Ã°????? ?Ö±?
+server.sms.rt.coll.check.period=5       
+
+# NCM configuration
+server.nms.ncm.debug.level=1
+server.nms.ncm.mib.dir=<%= @sysmaster_home %>/mibfiles
+server.nms.ncm.snmp.timeout=3000
+server.nms.ncm.snmp.retries=1
+server.nms.ncm.snmp.port=161
+server.nms.ncm.max.threads=20
+server.nms.ncm.loader.max.connections=5
+server.nms.ncm.loader.max.queue.length=100000
+server.nms.ncm.source.charset.name=iso-8859-1
+server.nms.ncm.destination.charset.name=euc-kr
+server.nms.ncm.remove.interval.days=7
+
+# Mymib Collector
+server.nms.mymib.debug.level=1
+server.nms.mymib.coll.snmp.timeout=5000
+server.nms.mymib.coll.snmp.retries=1
+server.nms.mymib.coll.snmp.port=161
+server.nms.mymib.coll.max.threads=50
+server.nms.mymib.coll.snmp.get.instance.max=50
+server.nms.mymib.coll.thread.max.instances=50
+server.nms.mymib.coll.gc.interval.secs=60
+server.nms.mymib.coll.heartbeat.max.interval.secs=600
+server.nms.mymib.coll.loader.max.connections=5
+server.nms.mymib.coll.loader.max.queue.length=100000
+server.nms.mymib.baseline.statistics.enable=Y
+server.nms.mymib.baseline.statistics.week.interval=4
+server.nms.mymib.coll.policy.refresh.interval.secs=60
+
+# Mymib Realtime Collector
+server.nms.mymib.rt.debug.level=1
+server.nms.mymib.rt.coll.snmp.timeout=5000
+server.nms.mymib.rt.coll.snmp.retries=1
+server.nms.mymib.rt.coll.snmp.port=161
+server.nms.mymib.rt.coll.max.threads=20
+server.nms.mymib.rt.coll.snmp.get.instance.max=50
+server.nms.mymib.rt.coll.thread.max.instances=50
+server.nms.mymib.rt.coll.gc.interval.secs=60
+server.nms.mymib.rt.coll.heartbeat.max.interval.secs=600
+server.nms.mymib.rt.coll.policy.refresh.interval.secs=60
+
+# Snmp Realtime Bean
+server.nms.snmpd.debug.level=2
+server.nms.snmpd.port=9608
+server.nms.snmpd.realtime.cache.expire.secs=60
+server.nms.snmpd.realtime.cache.keep.secs=600
+server.nms.snmpd.timeout.secs=600
+server.nms.snmpd.connection.timeout.secs=3
+
+# Nms Baseline
+# - week interval
+server.nms.baseline.statistics.enable=Y
+server.nms.baseline.statistics.week.interval=4
+
+# Real db connections = (server.nms.priv.coll.loader.max.connections)*2
+server.nms.priv.coll.loader.max.connections=1
+server.nms.priv.coll.snmp.get.instance.max=50
+server.nms.priv.coll.gc.interval.secs=60
+server.nms.priv.coll.wait.interval.milli=500
+server.nms.priv.coll.event.refresh.interval.secs=60
+
+# Realtime Service
+server.realtime.service.debug.level=1
+server.realtime.service.rrcache.capacity=135
+server.realtime.service.name.cache=realtimecache
+server.realtime.service.name.view=realtimeview
+server.realtime.service.host=%MASTER_IP%
+server.realtime.service.port=1099
+server.realtime.service.max.queue.length=100000
+server.realtime.service.rrcache.status.logging.interval.sec=60
+server.realtime.service.view.status.logging.interval.sec=60
+
+#CLI 
+cli.config.telnet.timeout=3000
+cli.config.request.timeout=10000
+cli.config.file.dir=<%= @sysmaster_home %>/SM-DATA/netconfig/config
+cli.config.chg.file.dir=<%= @sysmaster_home %>/SM-DATA/netconfig/config/change
+cli.config.base.file.dir=<%= @sysmaster_home %>/SM-DATA/netconfig/baseline
+cli.config.max.threads=50
+cli.config.request.timeout=10000
+#config ?ß°? ?É¼? 0: ?×½? ?ß°? 1:?????Ã¸? ?ß°?
+cli.config.file.insert.mode=1
+
+#Compliance
+compliance.service.max.threads=10
+compliance.service.interval.day=7
+
+# Netflow/Sflow v5.4 common configuration
+server.nms.nflow.debug.level=2
+server.nms.nflow.port=9898
+server.nms.nflow.loader.max.threads=1
+server.nms.nflow.loader.max.queue.length=100000
+server.nms.nflow.data.interval.secs=600
+server.nms.nflow.data.logging=N
+server.nms.nflow.data.dir=<%= @sysmaster_home %>/SM-DATA/netflowdata
+server.nms.nflow.flow.logging=N
+server.nms.nflow.flow.dir=<%= @sysmaster_home %>/SM-DATA/nflowlog
+server.nms.nflow.temp.dir=<%= @sysmaster_home %>/SM-DATA/nflowtemp
+server.nms.nflow.data.logging.ip.enable=N
+server.nms.nflow.data.logging.ip=
+server.nms.nflow.coll.max.thread=10
+server.nms.nflow.coll.recv.buffer.size=10240
+server.nms.nflow.event.resync.interval.secs=60
+server.nms.nflow.query.service.enable=Y
+server.nms.nflow.database.enable=N
+server.nms.nflow.data.service.enable=Y
+server.nms.nflow.data.service.url=rmi://localhost:3009/dataservice
+server.nms.nflow.data.service.export.interval.sec=60
+server.nms.nflow.cache.service.enable=Y
+server.nms.nflow.cache.service.config.xml=<%= @sysmaster_home %>/conf/nflow-cache.xml
+server.nms.nflow.cache.service.url=rmi://localhost:9629/NFlowCacheService
+server.nms.nflow.cache.service.host=localhost
+server.nms.nflow.cache.service.port=9629
+server.nms.nflow.cache.service.name=NFlowCacheService
+server.nms.nflow.cache.service.status.logging.interval.sec=60
+server.nms.nflow.cache.config.name=TopHash
+server.nms.nflow.cache.config.type=MemoryDiskPersist
+
+#Nflow time Combo ?????? ???Ð¾? ???????? ????
+netflow.coll.interval.min=10
+
+# Traffic Data Tables
+# 1 : ??Á¸ ???Ìº?
+# 2 : ????À§ ???Ìº?
+traffic.month.search.mode=2
+
+
+#multichart
+multichart.service.debug.level=4
+multichart.service.xml.dir=<%= @sysmaster_home %>/SM-DATA/multichartxml
+multichart.service.port=9651
+multichart.grid.contents.js.file.dir=<%= @sysmaster_home %>/SM-DATA/multichart/javascript
+
+
+# Ping-MIB Collector
+server.nms.pmib.debug.level=1
+server.nms.pmib.default.poll.period=300
+server.nms.pmib.default.entry.owner=SMPMIB01
+server.nms.pmib.default.protocol=1
+server.nms.pmib.default.pkt.cnt=5
+server.nms.pmib.default.pkt.size=100
+server.nms.pmib.default.timeout=2000
+server.nms.pmib.default.delay=0
+server.nms.pmib.coll.snmp.timeout=3000
+server.nms.pmib.coll.snmp.retries=1
+server.nms.pmib.coll.snmp.port=161
+server.nms.pmib.coll.max.threads=20
+server.nms.pmib.coll.snmp.get.instance.max=50
+server.nms.pmib.coll.gc.interval.secs=60
+server.nms.pmib.coll.loader.max.connections=1
+server.nms.pmib.coll.entry.max=10
+
+# Ping-MIB Baseline
+nms.pmib.baseline.debug.level=1
+nms.pmib.baseline.interval.min=5
+server.nms.pmib.baseline.statistics.week.interval=4
+
+# vpn configuration
+server.vpn.enable=Y
+server.vpn.data.dir=<%= @sysmaster_home %>/SM-DATA/vpndata
+server.vpn.conf.data.dir=<%= @sysmaster_home %>/vpnconfigdata
+server.vpn.conf.interval=3600
+
+# alteon configuration
+server.alteon.enable=Y
+server.alteon.service.name.coll=AlteonCollSVC
+server.alteon.service.name.calc=AlteonCalcSVC
+server.alteon.data.dir=<%= @sysmaster_home %>/SM-DATA/atdata
+server.alteon.conf.data.dir=<%= @sysmaster_home %>/SM-DATA/atconfigdata
+server.alteon.conf.interval=3600
+
+
+#########################################################################################################################################################################
+# 10.DBMS Monitoring Configuration
+#########################################################################################################################################################################
+# dms
+server.dms.conf.dir=<%= @sysmaster_home %>/confkm
+server.dms.sql.usr=dms_user.sql
+server.dms.sql.view=dms_view.sql
+dms.oracle.avail.config.file=dbmonora.ini
+dms.oracle.avail.maxthreads=1
+dms.oracle.avail.timeout=10
+dms.oracle.avail.retries=1
+dms.oracle.avail.retries.wait.seconds=3
+dms.oracle.avail.retries.timeout.seconds=60
+
+dms.mssql.avail.config.file=dbmonsql.ini
+dms.mssql.avail.maxthreads=1
+dms.mssql.avail.retries=1
+dms.mssql.avail.retries.wait.seconds=3
+dms.mssql.avail.retries.timeout.seconds=60
+
+dms.mssql.monitor.maxthreads=1
+dms.mssql.monitor.conn.retries=1
+dms.mssql.monitor.conn.retries.wait.seconds=3
+dms.mssql.monitor.conn.retries.timeout.seconds=60
+# Real db connections = (dms.mssql.monitor.loader.max.connections)*2
+dms.mssql.monitor.loader.max.connections=1
+
+dms.mysql.monitor.maxthreads=1
+dms.mysql.monitor.conn.retries=1
+dms.mysql.monitor.conn.retries.wait.seconds=3
+dms.mysql.monitor.conn.retries.timeout.seconds=60
+# Real db connections = (dms.mysql.monitor.loader.max.connections)*2
+dms.mysql.monitor.loader.max.connections=1
+
+#########################################################################################################################################################################
+# 11.SysMaster APM configuration
+#########################################################################################################################################################################
+# apm agent policy
+agent.poll.retry=3
+agent.poll.http.maxthreads=10
+agent.poll.http.interval.seconds=600
+agent.poll.dns.interval.seconds=600
+agent.poll.pop3.interval.seconds=600
+agent.poll.smtp.interval.seconds=600
+agent.poll.imap4.interval.seconds=600
+agent.poll.nntp.interval.seconds=600
+agent.poll.ftp.interval.seconds=600
+agent.poll.radius.interval.seconds=600
+agent.poll.dhcp.interval.seconds=600
+agent.poll.rtemail.interval.seconds=600
+agent.poll.http.timeout.seconds=30
+agent.poll.dns.timeout.seconds=5
+agent.poll.pop3.timeout.seconds=5
+agent.poll.smtp.timeout.seconds=5
+agent.poll.imap4.timeout.seconds=5
+agent.poll.nntp.timeout.seconds=5
+agent.poll.ftp.timeout.seconds=5
+agent.poll.radius.timeout.seconds=5
+agent.poll.dhcp.timeout.seconds=5
+agent.poll.rtemail.timeout.seconds=5
+
+#########################################################################################################################################################################
+# 12.FMS Configuration
+#########################################################################################################################################################################
+# FMS Agent
+fms.agent.debug.level=2
+fms.agent.data.dir=<%= @sysmaster_home %>/SM-DATA/fmsdata
+fms.agent.host.name=H0000011
+fms.agent.sleep.interval.secs=5
+
+fms.agent.connection.timeout.secs=2
+fms.agent.timeout.secs=10
+
+# FMS Server
+server.fms.debug.level=2
+server.fms.coll.max.threads=5
+server.fms.coll.loader.max.connections=1
+server.fms.coll.ip=127.0.0.1
+server.fms.coll.port=9609
+
+
+
+#########################################################################################################################################################################
+# 13.MOM Configuration(SysMasterMgmt/ConfigManager/MOM upload,download)
+#########################################################################################################################################################################
+# SysMasterMgmt Service Configuration (M/S)
+###########################################
+smon.monitor.location.name=SysMaster
+smon.poll.interval.seconds=60
+smon.start.wait.seconds=300
+smon.takeover.fail.sleep.seconds=5
+
+######## monitor services
+smon.monitor.service.enable=Y
+# If core service is failed, M/S take over C/S
+smon.monitor.service.takeover.enable=N
+#CDownloadService,CUpdateService,CUploadService,PDownloadService,PUploadService,PUpdateService,Topo3DService
+smon.monitor.service.name=Tomcat5,ConfigManager,CRONSVC,DataReceiver,MCCService,MAPService,UpdateManager,SnmpGateway,EventReceiver,EventConverter,TFTPServer,SmMultiChartSVC,NmsRTService,SmAgentProxy,SmAgentExec
+smon.monitor.service.retries=3
+smon.monitor.service.fail.wait.seconds=60
+
+######## monitor collector services
+smon.monitor.collector.service.enable=Y
+# If collecting service is failed, M/S take over C/S
+smon.monitor.collector.service.takeover.enable=N
+smon.monitor.collector.service.retries=3
+smon.monitor.collector.service.fail.wait.seconds=60
+
+######## monitor oracle listener
+smon.monitor.lsnr.enable=Y
+# If oracle is local, this flag enable to 'Y'...
+smon.monitor.lsnr.recovery.enable=N
+# You want to other service after recovery oralce.
+smon.monitor.lsnr.recovery.service.name=
+smon.monitor.lsnr.timeout.seconds=10
+# If db connection is failed, M/S take over C/S
+smon.monitor.lsnr.takeover.enable=N
+smon.monitor.lsnr.retries=3
+smon.monitor.lsnr.wait.seconds=5
+smon.monitor.lsnr.hangup.timeout.seconds=60
+smon.monitor.lsnr.hangup.retries=3
+smon.monitor.lsnr.hangup.wait.seconds=5
+
+######## monitor client station
+# If C/S is down, M/S take over C/S
+smon.monitor.client.station.takeover.enable=N
+smon.monitor.client.station.enable=Y
+smon.monitor.client.station.status.retries=3
+smon.monitor.client.station.status.fail.sleep.seconds=120
+smon.monitor.client.station.ping.retries=3
+smon.monitor.client.station.ping.fail.wait.seconds=30
+smon.monitor.client.station.ping.timeout.seconds=10
+smon.monitor.client.station.ping.packet.byte.size=32
+smon.monitor.client.station.ping.ttl=255
+# info=1, warning=2, minor=3, major=4, critical=5
+smon.monitor.client.station.event.level=1
+
+smon.event.mail.target=
+smon.event.mail.enable=Y
+
+
+######################################################
+# Config Manager
+# If web server ip is diffrent with collecting server ip, must set this parameter
+######################################################
+config.manager.ip=localhost
+config.manager.port=9607
+config.manager.connection.timeout.secs=5
+config.manager.timeout.secs=600
+config.manager.auto.trigger.update.enable=N
+config.manager.auto.trigger.update.interval.secs=60
+
+######################################################
+# MOM Gateway configuration
+######################################################
+
+# Local Gateway Type 1(M/S),2(C/S)
+gw.type=1
+
+# If local system M/S, then "0.0.0.0", Otherwise system ip registered by [SM_GATEWAY].
+gw.ip=0.0.0.0
+
+# Local host_name field by [SM_SERVER]
+gw.host.name=H0000001
+
+# C/S Gateway Database Type 1(Shared),2(Independent)
+# This parameter is only used at M/S.
+gw.db.type=2
+
+# C/S performance export interval on daemon mode
+gw.export.table.interval.min=1
+
+# M/S information
+gw.master.ip=%MASTER_IP%
+gw.master.config.manager.ip=%MASTER_IP%
+gw.master.config.manager.port=9607
+gw.master.event.receiver.ip=%MASTER_IP%
+gw.master.event.receiver.port=9603
+
+
+######################################################
+# MOM upload/download configuration
+######################################################
+# MOM Perf upload
+server.mom.pupload.data.dir=<%= @sysmaster_home %>/SM-DATA/pupload
+server.mom.pupload.data.backup=Y
+server.mom.pupload.debug.level=1
+server.mom.pupload.max.threads=5
+server.mom.pupload.interval.secs=300
+server.mom.pupload.connection.timeout.secs=5
+server.mom.pupload.timeout.secs=300
+
+# MOM Perf download
+server.mom.pdownload.database.driver=oracle.jdbc.driver.OracleDriver
+server.mom.pdownload.database.url=jdbc:oracle:thin:@localhost:1521:uma
+server.mom.pdownload.database.user=sm54
+server.mom.pdownload.database.password=master
+server.mom.pdownload.data.dir=<%= @sysmaster_home %>/SM-DATA/pdnload
+server.mom.pdownload.debug.level=1
+server.mom.pdownload.max.threads=5
+server.mom.pdownload.port=9614
+
+# MOM Perf update
+server.mom.pupdate.debug.level=1
+server.mom.pupdate.data.backup=Y
+server.mom.pupdate.max.threads=5
+
+# MOM Conf upload
+server.mom.cupload.data.dir=<%= @sysmaster_home %>/SM-DATA/cupload
+server.mom.cupload.data.backup=N
+server.mom.cupload.debug.level=1
+server.mom.cupload.max.threads=5
+server.mom.cupload.interval.secs=30
+server.mom.cupload.connection.timeout.secs=5
+server.mom.cupload.timeout.secs=300
+
+# MOM Conf download
+server.mom.cdownload.database.driver=oracle.jdbc.driver.OracleDriver
+server.mom.cdownload.database.url=jdbc:oracle:thin:@localhost:1521:uma
+server.mom.cdownload.database.user=sm54
+server.mom.cdownload.database.password=master
+server.mom.cdownload.data.dir=<%= @sysmaster_home %>/SM-DATA/cdnload
+server.mom.cdownload.debug.level=1
+server.mom.cdownload.max.threads=5
+server.mom.cdownload.port=9615
+
+# MOM Conf update
+server.mom.cupdate.debug.level=1
+server.mom.cupdate.data.backup=Y
+server.mom.cupdate.max.threads=5
+
+
+#########################################################################################################################################################################
+# 14.Backup/FailOver Configuration 
+#########################################################################################################################################################################
+# Sysmaster backup database -- Database replication
+backup.source.server.database.driver=oracle.jdbc.driver.OracleDriver
+backup.source.server.database.url=jdbc:oracle:thin:@localhost:1521:uma
+#backup.source.server.database.host=localhost
+backup.source.server.database.user=uma
+backup.source.server.database.password=master
+#backup.source.server.database.port=1521
+#backup.source.server.database.dsn=uma
+backup.target.server.database.driver=oracle.jdbc.driver.OracleDriver
+backup.target.server.database.url=jdbc:oracle:thin:@localhost:1521:uma
+#backup.target.server.database.host=localhost
+backup.target.server.database.user=uma_backup
+backup.target.server.database.password=master
+#backup.target.server.database.port=1521
+#backup.target.server.database.dsn=uma
+
+# Sysmaster backup interval
+backup.performance.interval.min=5
+backup.evt.interval.min=5
+backup.form.interval.hour=24
+
+# Sysmaster backup config manager -- File replication
+backup.target.config.manager.ip=192.168.103.28
+backup.target.config.manager.port=9607
+backup.source.config.manager.ip=<%= @master_ip %>
+backup.source.config.manager.port=9607
+
+backup.directory.home=<%= @sysmaster_home %>_Backup
+backup.directory.temp=<%= @sysmaster_home %>_Backup_Temp
+backup.directory.count=9
+
+backup.directory.name.1=MAP_FILE
+backup.directory.path.1=<%= @sysmaster_home %>/map
+
+backup.directory.name.2=MAP_IMAGE_FILE
+backup.directory.path.2=<%= @sysmaster_home %>/portal/map
+
+backup.directory.name.3=SYSLOG_FILE
+backup.directory.path.3=<%= @sysmaster_home %>/portal/board/syslog/download
+
+backup.directory.name.4=Q&N_FILE
+backup.directory.path.4=<%= @sysmaster_home %>/portal/board/qna/download
+
+backup.directory.name.5=BOARD_FILE
+backup.directory.path.5=<%= @sysmaster_home %>/portal/board/board/download
+
+backup.directory.name.6=PDS_FILE
+backup.directory.path.6=<%= @sysmaster_home %>/portal/board/pds/download
+
+backup.directory.name.7=SPM_FILE
+backup.directory.path.7=<%= @sysmaster_home %>/portal/board/spm/download
+
+backup.directory.name.8=DIARY_FILE
+backup.directory.path.8=<%= @sysmaster_home %>/portal/sm_diary/download
+
+backup.directory.name.9=SUNBUN_FILE
+backup.directory.path.9=<%= @sysmaster_home %>/portal/sm_network/download
+
+# Fail Over mode 1 : ConfigManager Down , mode 2 : ConfigManager Down & ICMP Fail 
+fail.over.condition.mode=1
+# Sysmaster failover -- Active Server ICMP check
+fail.target.server.icmp.host=<%= @master_ip %>
+fail.target.server.icmp.interval.min=1
+fail.target.server.icmp.retries=3
+fail.target.server.icmp.fail.sleep.seconds=3
+fail.target.server.icmp.timeout.seconds=5
+fail.target.server.icmp.packet.byte.size=32
+fail.target.server.icmp.ttl=255
+
+#Active Server Configd check
+fail.target.server.configd.interval.min=5
+fail.target.server.configd.connection.retries=3
+fail.target.server.configd.connection.fail.sleep.seconds=300
+
+failover.config.manager.ip=192.168.103.28
+failover.config.manager.port=9607
+
+# Server Type 1(Active), 2(Stand by)
+failover.server.type=1
+failover.perf.table.name=NM_PF_LINE_CURRENT
+failover.perf.time.limit=1800
+
+
+
+
+#########################################################################################################################################################################
+# 15.??Å¸ ??Á¤ 
+#########################################################################################################################################################################
+
+##?Ìº?Æ®???? Line???? ????
+integrat.event.line=E00021,E00022,E00023,E00024,E00025,E00026,E00028
+
+#################################################
+# DEV / LINE Performance Interval
+#################################################
+## ???ñ¼º´?
+dev.perf.interval.hour=5
+## È¸??????
+line.perf.interval.hour=5
+
+# IPT chart option
+# chart.view.num : # to show in a page.(4,6,8,10,12,14,16,18,20)
+# chart.inst.view.num : # to show in a chart.(max:20)
+chart.view.num=4
+chart.inst.view.num=4
+
+###############################################
+# IPT EndPoint option
+###############################################
+server.ipt.callmanager.interval.secs=300
+
+#???Ú¿????? ???Ú¿???
+#????
+kwater.sms.id=20052504
+
+#??È¯Àº?? ???Ú¿???
+keb.sms.transervice=2008
+keb.sms.branchcode=kr12
+keb.sms.callbackno=01132722392
+keb.sms.refkey=k000
+#################################################
+# Security configuration
+#################################################
+server.security.enable=Y
+
+# Goodus Only
+event.raw.log=N
+event.raw.log.dir=<%= @sysmaster_home %>/SM-DATA/faultlog
+
+# Doosan Only
+event.doosan.log.dir=<%= @sysmaster_home %>/SM-DATA/doosanfaultlog
+
+# sms
+server.sms.chk.interval=15
+
+# optic configuration
+optic.atm.database.host=127.0.0.1
+optic.atm.database.port=8000
+optic.atm.database.dbname=stratacom
+optic.atm.database.svrname=solar
+optic.atm.database.user=svplus
+optic.atm.database.password=svplus
+optic.atm.database.security=1
+optic.conf.tl1.command=tl1cmd.conf
+optic.conf.tl1.alarm=tl1alarm.conf
+
+# collector interval
+optic.opm16.curr.interval.seconds=60
+optic.atm.trk.chk.interval.minutes=15
+optic.atm.pvc.chk.interval.minutes=15
+
+# change
+change.conf=change.conf
+
+# WLAN
+server.wlan.coll.max.threads=1
+server.wlan.coll.snmp.timeout=3000
+server.wlan.coll.snmp.retries=1
+server.wlan.coll.snmp.port=161
+server.wlan.coll.switch.interval.secs=86400
+server.wlan.coll.ap.interval.secs=3600
+server.wlan.coll.status.interval.secs=60
+server.wlan.coll.history.interval.secs=300
+server.wlan.coll.policy.refresh.interval.secs=300
+
+###############################################################
+# Chart configuration
+###############################################################
+#??Æ® Á¦?? À¯??
+nms.chart.title.enable=Y
+
+#??Æ® Series ???? ?? color ????Á¤?? (Line)
+
+#??Æ® avg Series ????
+nms.chart.avg1.color=0000CC
+nms.chart.avg2.color=00CCCC
+
+#??Æ® max Series ????
+nms.chart.max1.color=00CC00
+nms.chart.max2.color=993399
+
+#??Æ® max Series ????
+nms.chart.min.color=FF7400
+
+#??Æ® avgofmax Series ????
+nms.chart.avgofmax1.color=FB7718
+nms.chart.avgofmax2.color=FBE918
+
+#??Æ® ??À§ baseline Series ????
+nms.chart.upbaseline1.color=FF7F00
+nms.chart.upbaseline2.color=BF00BF
+
+#??Æ® ??À§ basline Series ????
+nms.chart.lowbaseline1.color=FF00FF
+nms.chart.lowbaseline2.color=FF38FF
+
+#??Æ® intput,output Series ????
+nms.chart.input.color=00CC00
+nms.chart.output.color=0000CC
+
+#??Æ® Area?×·??? À¯?? 
+nms.chart.avg.area.enable=N
+nms.chart.max.area.enable=Y
+nms.chart.min.area.enable=N
+nms.chart.input.area.enable=Y
+nms.chart.output.area.enable=N
+
+
+#??Æ® Äµ???? ???? ???? ?? ???Ä°?
+nms.chart.canvas.bgcolor=F5F3F5
+nms.chart.canvas.bgalpha=100
+
+#??Æ® ???????? ?? ???Ä°?
+nms.chart.bgcolor=a4a4b1
+nms.chart.bgalpah=100
+
+#??Æ® ???? ???? ????
+nms.chart.legend.bgcolor=FFFFFF
+
+#??Æ®  x,y???? ?? ????
+nms.chart.outcnvbase.fontcolor=000000
+
+
+
+#??Æ® ???? ?×¸? ?âº» ???? ???? 
+nms.chart.line_avg.default=Y
+nms.chart.line_max.default=N
+nms.chart.baseline.default=N
+nms.chart.baseline_max.default=Y
+nms.chart.baseline_min.default=N
+
+
+
+#??Æ® ???Â½? baseline ??Á¤ ?Ë°í¸®??
+nms.chart.baseline.max_compensation_algorithm=Y
+
+
+#####################################################
+# Query Service for NFlowService Agent Mode
+######################################################
+server.query.service.debug.level=2
+server.query.service.name=queryview
+server.query.service.host=localhost
+server.query.service.port=3009
+server.query.service.status.logging.interval.sec=60
+server.datasource.bean.id.qrservice=dataSource-qrservice
+
+#####################################################
+# Data Service for NFlowService Agent Mode
+######################################################
+server.data.service.debug.level=2
+server.data.service.name=dataservice
+server.data.service.host=localhost
+server.data.service.port=3009
+server.data.service.status.logging.interval.sec=60
+server.datasource.bean.id.dtservice=dataSource-dtservice
+
+#####################################################
+# Snmp Service for Snmp Discovery
+######################################################
+server.snmp.service.debug.level=2
+server.snmp.service.name=snmpservice
+server.snmp.service.host=localhost
+server.snmp.service.port=9629
+server.snmp.service.status.logging.interval.sec=60

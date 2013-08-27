@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="dataSource-web" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@<%= @database_ip %>:<%= @database_port %>:<%= @database_sid %>"/>
+        <property name="username" value="<%= @database_user %>"/>
+        <property name="password" value="<%= @database_passwd %>"/>
+        <property name="maxActive" value="100"/>
+        <property name="maxIdle" value="10"/>
+        <property name="maxWait" value="60000"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="60"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="validationQuery" value="select 1 from dual"/>
+  </bean>	
+    
+  <bean id="dataSource-topo3d" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@<%= @database_ip %>:<%= @database_port %>:<%= @database_sid %>"/>
+        <property name="username" value="<%= @database_user %>"/>
+        <property name="password" value="<%= @database_passwd %>"/>
+        <property name="maxActive" value="20"/>
+        <property name="maxIdle" value="3"/>
+        <property name="maxWait" value="60000"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="60"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="validationQuery" value="select 1 from dual"/>
+  </bean>	
+  
+  <bean id="dataSource-mapd" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@<%= @database_ip %>:<%= @database_port %>:<%= @database_sid %>"/>
+        <property name="username" value="<%= @database_user %>"/>
+        <property name="password" value="<%= @database_passwd %>"/>
+        <property name="maxActive" value="20"/>
+        <property name="maxIdle" value="3"/>
+        <property name="maxWait" value="60000"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="60"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="validationQuery" value="select 1 from dual"/>
+  </bean>	
+  
+  <bean id="dataSource-mccd" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@<%= @database_ip %>:<%= @database_port %>:<%= @database_sid %>"/>
+        <property name="username" value="<%= @database_user %>"/>
+        <property name="password" value="<%= @database_passwd %>"/>
+        <property name="maxActive" value="20"/>
+        <property name="maxIdle" value="3"/>
+        <property name="maxWait" value="60000"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="60"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="validationQuery" value="select 1 from dual"/>
+  </bean>	
+  
+  <bean id="dataSource-syslog" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@<%= @database_ip %>:<%= @database_port %>:<%= @database_sid %>"/>
+        <property name="username" value="<%= @database_user %>"/>
+        <property name="password" value="<%= @database_passwd %>"/>
+        <property name="maxActive" value="20"/>
+        <property name="maxIdle" value="3"/>
+        <property name="maxWait" value="60000"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="60"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="validationQuery" value="select 1 from dual"/>
+  </bean>	
+  
+   <bean id="dataSource-mymib" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@<%= @database_ip %>:<%= @database_port %>:<%= @database_sid %>"/>
+        <property name="username" value="<%= @database_user %>"/>
+        <property name="password" value="<%= @database_passwd %>"/>
+        <property name="maxActive" value="20"/>
+        <property name="maxIdle" value="4"/>
+        <property name="maxWait" value="60000"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="60"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="validationQuery" value="select 1 from dual"/>
+  </bean>
+  
+  <bean id="dataSource-nflow" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@<%= @database_ip %>:<%= @database_port %>:<%= @database_sid %>"/>
+        <property name="username" value="<%= @database_user %>"/>
+        <property name="password" value="<%= @database_passwd %>"/>
+        <property name="maxActive" value="20"/>
+        <property name="maxIdle" value="4"/>
+        <property name="maxWait" value="60000"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="60"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="validationQuery" value="select 1 from dual"/>
+  </bean>
+  
+  
+  <bean id="dataSource-multichart" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@<%= @database_ip %>:<%= @database_port %>:<%= @database_sid %>"/>
+        <property name="username" value="<%= @database_user %>"/>
+        <property name="password" value="<%= @database_passwd %>"/>
+        <property name="maxActive" value="20"/>
+        <property name="maxIdle" value="4"/>
+        <property name="maxWait" value="60000"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="60"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="validationQuery" value="select 1 from dual"/>
+  </bean>
+  
+</beans>

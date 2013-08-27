@@ -1,0 +1,49 @@
+#!/bin/sh
+#set -x 
+
+SYSMASTER_HOME=<%= @sysmaster_home %>
+if [ -r $SYSMASTER_HOME/bin/setAllEnv.sh ]; then
+    . $SYSMASTER_HOME/bin/setAllEnv.sh
+    else
+        echo Cannot find $SYSMASTER_HOME/bin/setAllEnv.sh
+        echo This file is needed to run this program
+    exit 1
+fi
+
+#. $SYSMASTER_HOME/bin/stopSysMasterMgmt.sh start
+
+# RMI Service
+. $SYSMASTER_HOME/bin/stopRTService.sh start
+. $SYSMASTER_HOME/bin/stopSnmpService.sh start
+. $SYSMASTER_HOME/bin/stopQueryService.sh start
+. $SYSMASTER_HOME/bin/stopDataService.sh start
+
+# Common Service
+. $SYSMASTER_HOME/bin/stopBOSVC.sh start
+. $SYSMASTER_HOME/bin/stopMAPD.sh start
+#. $SYSMASTER_HOME/bin/stopTopo3DSVC.sh start
+. $SYSMASTER_HOME/bin/stopPingCollector.sh start
+. $SYSMASTER_HOME/bin/stopMultiChartSVC.sh
+
+# SMS Service
+. $SYSMASTER_HOME/bin/stopMCCD.sh start
+. $SYSMASTER_HOME/bin/stopApmSVC.sh start
+. $SYSMASTER_HOME/bin/stopDBASVC.sh start
+#. $SYSMASTER_HOME/bin/stopFmsService.sh start
+
+# NMS Service
+. $SYSMASTER_HOME/bin/stopNMSSVC.sh start
+. $SYSMASTER_HOME/bin/stopNMSRTCollector.sh start
+. $SYSMASTER_HOME/bin/stopPmibCollector.sh start
+. $SYSMASTER_HOME/bin/stopMymibCollector.sh start
+. $SYSMASTER_HOME/bin/stopMymibRTCollector.sh start
+. $SYSMASTER_HOME/bin/stopNFlowService.sh start
+. $SYSMASTER_HOME/bin/stopSMSRTSVC.sh start
+
+# MOM Service
+#. $SYSMASTER_HOME/bin/stopCUpdateService.sh start
+#. $SYSMASTER_HOME/bin/stopCUploadService.sh start
+#. $SYSMASTER_HOME/bin/stopCDownloadService.sh start
+#. $SYSMASTER_HOME/bin/stopPUpdateService.sh start
+#. $SYSMASTER_HOME/bin/stopPUploadService.sh start
+#. $SYSMASTER_HOME/bin/stopPDownloadService.sh start
