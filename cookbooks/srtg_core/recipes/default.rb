@@ -55,7 +55,7 @@ template "#{node[:srtg_core][:install_dir]}/conf/portal.conf" do
     })  
 end
 
-template "#{node[:srtg_core][:install_dir]}/conf/pormework/applicationContext-datasource.xml" do
+template "#{node[:srtg_core][:install_dir]}/conf/config/framework/applicationContext-datasource.xml" do
     source "applicationContext-datasource.xml.erb"
     variables({
         :database_ip    => node[:srtg_core][:database_ip],
