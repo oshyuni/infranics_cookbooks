@@ -170,4 +170,6 @@ bash "install_something" do
     EOM
 end
 
+action :start
+
 rightscale_marker :end
