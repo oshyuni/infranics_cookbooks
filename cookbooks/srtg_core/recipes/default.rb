@@ -120,7 +120,7 @@ log "Setting setAllEnv.sh"
 template "#{node[:srtg_core][:install_dir]}/bin/setAllEnv.sh" do
     source "setAllEnv.sh.erb"
     variables({
-        :sysmaster_home => node[:srtg_core][:install_dir]
+        :sysmaster_home => node[:srtg_core][:install_dir],
         :java_home => node[:srtg_core][:java_dir]
     })
 end
