@@ -1,0 +1,43 @@
+#!/bin/sh
+#set -x
+
+SYSMASTER_HOME=<%= @sysmaster_home %>
+
+case "$1" in
+    start)
+      echo "Starting Tomcat5.5 Service: " >&2
+      $SYSMASTER_HOME/tomcat5.5/bin/startup.sh
+      echo "Starting SysMaster70 All Service: " >&2
+      $SYSMASTER_HOME/bin/sm70StartAll.sh
+      ;;
+
+    stop)
+      echo "Stopping SysMaster70 All Service: " >&2
+      $SYSMASTER_HOME/bin/sm70StopAll.sh
+      killall rmiregistry
+      echo "Stopping tomcat5.5 Service: " >&2
+      $SYSMASTER_HOME/tomcat5.5/bin/shutdown.sh
+      ;;
+
+    restart)
+      echo "Stopping SysMaster70 All Service: " >&2
+      $SYSMASTER_HOME/bin/sm70StopAll.sh
+      killall rmiregistry
+      echo "Stopping tomcat5.5 Service: " >&2
+      $SYSMASTER_HOME/tomcat5.5/bin/shutdown.sh
+
+      sleep 1
+
+      echo "Starting Tomcat5.5 Service: " >&2
+      $SYSMASTER_HOME/tomcat5.5/bin/startup.sh
+      echo "Starting SysMaster70 All Service: " >&2
+      $SYSMASTER_HOME/bin/sm70StartAll.sh
+      ;;
+    *)
+      echo "Usage: $0 { start | stop | restart }" >&2
+      exit 1
+      ;;
+esac
+
+exit 0
+
