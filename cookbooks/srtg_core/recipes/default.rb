@@ -27,8 +27,9 @@ bash "untar_srtg_core" do
     cwd "/tmp"    
     code <<-EOM
         mkdir #{node[:srtg_core][:install_dir]}
-        tar zxf SRTG_core.tar.gz --strip=1 -C #{node[:srtg_core][:install_dir]}
+        mv SRTG_core.tar.gz #{node[:srtg_core][:install_dir]}
         cd #{node[:srtg_core][:install_dir]}
+        tar -zxf SRTG_core.tar.gz
         tar -xvf #{node[:srtg_core][:install_file]}
         mkdir -p #{node[:srtg_core][:install_dir]}/logs
         mkdir -p #{node[:srtg_core][:install_dir]}/SM-DATA
