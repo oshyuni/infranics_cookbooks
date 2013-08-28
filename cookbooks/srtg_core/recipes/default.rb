@@ -42,6 +42,7 @@ bash "untar_srtg_core" do
     not_if { ::File.exists?("#{node[:srtg_core][:install_dir]}/bin") }  
 end
 
+log "Setting portal.conf"
 template "#{node[:srtg_core][:install_dir]}/conf/portal.conf" do    
     source "portal.conf.erb"    
     variables({      
@@ -55,6 +56,7 @@ template "#{node[:srtg_core][:install_dir]}/conf/portal.conf" do
     })  
 end
 
+log "Setting applicationContext-datasource.xml"
 template "#{node[:srtg_core][:install_dir]}/conf/config/framework/applicationContext-datasource.xml" do
     source "applicationContext-datasource.xml.erb"
     variables({
@@ -66,6 +68,7 @@ template "#{node[:srtg_core][:install_dir]}/conf/config/framework/applicationCon
     })
 end
 
+log "Setting system.properties"
 template "#{node[:srtg_core][:install_dir]}/conf/system.properties" do
     source "system.properties.erb"
     variables({
@@ -73,6 +76,7 @@ template "#{node[:srtg_core][:install_dir]}/conf/system.properties" do
     })
 end
 
+log "Setting setJavaInstallEnv"
 template "#{node[:srtg_core][:install_dir]}/bin/setJavaInstallEnv" do
     source "setJavaInstallEnv.erb"
     variables({
@@ -80,6 +84,7 @@ template "#{node[:srtg_core][:install_dir]}/bin/setJavaInstallEnv" do
     })
 end
 
+log "Setting setSysMasterInstallEnv"
 template "#{node[:srtg_core][:install_dir]}/bin/setSysMasterInstallEnv" do
     source "setSysMasterInstallEnv.erb"
     variables({
@@ -87,6 +92,7 @@ template "#{node[:srtg_core][:install_dir]}/bin/setSysMasterInstallEnv" do
     })
 end
 
+log "Setting setTomcatInstallEnv"
 template "#{node[:srtg_core][:install_dir]}/bin/setTomcatInstallEnv" do
     source "setTomcatInstallEnv.erb"
     variables({
@@ -94,6 +100,7 @@ template "#{node[:srtg_core][:install_dir]}/bin/setTomcatInstallEnv" do
     })
 end
 
+log "Setting sm70StartAll.sh"
 template "#{node[:srtg_core][:install_dir]}/bin/sm70StartAll.sh" do
     source "sm70StartAll.sh.erb"
     variables({
@@ -101,6 +108,7 @@ template "#{node[:srtg_core][:install_dir]}/bin/sm70StartAll.sh" do
     })
 end
 
+log "Setting sm70StopAll.sh"
 template "#{node[:srtg_core][:install_dir]}/bin/sm70StopAll.sh" do
     source "sm70StopAll.sh.erb"
     variables({
@@ -108,21 +116,25 @@ template "#{node[:srtg_core][:install_dir]}/bin/sm70StopAll.sh" do
     })
 end
 
+log "Setting setAllEnv.sh"
 template "#{node[:srtg_core][:install_dir]}/bin/setAllEnv.sh" do
     source "setAllEnv.sh.erb"
     variables({
         :sysmaster_home => node[:srtg_core][:install_dir]
+        :java_home => node[:srtg_core][:java_dir]
     })
 end
 
-template "#{node[:srtg_core][:install_dir]}/tomcat5.5/conf/server.xml" do
+log "Setting Tomcat server.xml"
+template "#{node[:srtg_core][:install_dir]}/apache-tomcat-5.5.29/conf/server.xml" do
     source "server.xml.erb"
     variables({
         :sysmaster_home => node[:srtg_core][:install_dir]
     })
 end
 
-template "#{node[:srtg_core][:install_dir]}/tomcat5.5/bin/catalina.sh" do
+log "Setting Tomcat catalina.sh"
+template "#{node[:srtg_core][:install_dir]}/apache-tomcat-5.5.29/bin/catalina.sh" do
     source "catalina.sh.erb"
     variables({
         :sysmaster_home => node[:srtg_core][:install_dir],
@@ -130,6 +142,7 @@ template "#{node[:srtg_core][:install_dir]}/tomcat5.5/bin/catalina.sh" do
     })
 end
 
+log "Setting init.d"
 template "/etc/init.d/SysMaster70d" do
     source "SysMaster70d.erb"
     variables({
@@ -145,7 +158,7 @@ bash "install_something" do
         chmod +x #{node[:srtg_core][:install_dir]}/bin/sm70StartAll.sh
         chmod +x #{node[:srtg_core][:install_dir]}/bin/sm70StopAll.sh
         chmod +x #{node[:srtg_core][:install_dir]}/bin/setAllEnv.sh
-        chmod +x #{node[:srtg_core][:install_dir]}/tomcat5.5/bin/catalina.sh
+        chmod +x #{node[:srtg_core][:install_dir]}/apache-tomcat-5.5.29/bin/catalina.sh
         chmod +x /etc/init.d/SysMaster70d
         ln -s /etc/init.d/SysMaster70d /etc/rc2.d/S99SysMaster70d
         ln -s /etc/init.d/SysMaster70d /etc/rc3.d/S99SysMaster70d

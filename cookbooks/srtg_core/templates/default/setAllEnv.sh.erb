@@ -2,6 +2,8 @@
 #set -x 
 
 SYSMASTER_HOME=<%= @sysmaster_home %>
+JAVA_HOME=<%= @java_home %>
+JAVA_OPTS="-Dsystem.properties=$SYSMASTER_HOME/conf/system.properties"
 ################## SYSMASTER_HOME ######################
 if [ -z  $SYSMASTER_HOME ]; then 
     SYSMASTER_HOME=/opt/sysmaster
