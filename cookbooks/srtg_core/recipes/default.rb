@@ -36,6 +36,8 @@ bash "untar_srtg_core" do
         mkdir -p #{node[:srtg_core][:install_dir]}/SM-DATA
         chmod 774 #{node[:srtg_core][:install_dir]}/logs
         chmod 774 #{node[:srtg_core][:install_dir]}/SM-DATA
+        ln -s #{node[:srtg_core][:install_dir]}/jdk1.6.0_43 #{node[:srtg_core][:java_dir]}
+        ln -s #{node[:srtg_core][:install_dir]}/apache-tomcat-5.5.29 #{node[:srtg_core][:tomcat_dir]}
     EOM
     not_if { ::File.exists?("#{node[:srtg_core][:install_dir]}/bin") }  
 end
@@ -74,7 +76,7 @@ end
 template "#{node[:srtg_core][:install_dir]}/bin/setJavaInstallEnv" do
     source "setJavaInstallEnv.erb"
     variables({
-        :java_home => node[:srtg_core][:install_dir]
+        :java_home => node[:srtg_core][:java_dir]
     })
 end
 
@@ -88,7 +90,7 @@ end
 template "#{node[:srtg_core][:install_dir]}/bin/setTomcatInstallEnv" do
     source "setTomcatInstallEnv.erb"
     variables({
-        :tomcat_home => node[:srtg_core][:install_dir]
+        :tomcat_home => node[:srtg_core][:tomcat_dir]
     })
 end
 
@@ -124,7 +126,7 @@ template "#{node[:srtg_core][:install_dir]}/tomcat5.5/bin/catalina.sh" do
     source "catalina.sh.erb"
     variables({
         :sysmaster_home => node[:srtg_core][:install_dir],
-        :java_home => node[:srtg_core][:install_dir]
+        :java_home => node[:srtg_core][:java_dir]
     })
 end
 
