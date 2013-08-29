@@ -1,0 +1,163 @@
+#
+# Copyright (c) 2000-2002 by Infranics Inc.
+# All rights reserved.
+#
+# description: Start or stop the Infrauma daemon
+#
+#ident  "@(#)Infrauma     2.30   2002/09/05"
+
+# Source function library.
+if [ -f /etc/init.d/functions ] ; then
+  . /etc/init.d/functions
+elif [ -f /etc/rc.d/init.d/functions ] ; then
+  . /etc/rc.d/init.d/functions
+else
+  exit 0
+fi
+
+if [ ! -d /usr/bin ]
+then                    # /usr not mounted
+        exit 1
+fi
+
+#
+# Start/stop Infrauma
+#
+UMA_HOME=<%= @uma_home %>/agent
+export UMA_HOME
+echo $UMA_HOME
+
+PID=``
+
+if [ -f $UMA_HOME/.pid/scheduler.pid ] ; then
+    /bin/rm -f $UMA_HOME/.pid/scheduler.pid
+fi
+
+case "$1" in
+'start')
+        echo "Stopping Infrauma: "
+        /bin/ps -ef | grep uma.listend | grep -v grep | /bin/awk ' { print $2 } ' > .$$
+        PID=`cat .$$`
+        if [ "$PID" != "" ] ; then
+            kill -9 $PID
+        fi
+        /bin/ps -ef | grep umaagent | grep -v grep | /bin/awk ' { print $2 } ' > .$$
+        PID=`cat .$$`
+        if [ "$PID" != "" ] ; then
+            kill -9 $PID
+        fi
+        /bin/ps -ef | grep "scheduler -n start" | grep -v grep | /bin/awk ' { print $2 } ' > .$$
+        PID=`cat .$$`
+        if [ "$PID" != "" ] ; then
+            kill -9 $PID
+        fi
+        /bin/ps -ef | grep "shscheduler -n start" | grep -v grep | /bin/awk ' { print $2 } ' > .$$
+        PID=`cat .$$`
+        if [ "$PID" != "" ] ; then
+            kill -9 $PID
+        fi
+        /bin/ps -ef | grep sysmaster | grep -v grep | /bin/awk ' { print $2 } ' > .$$
+        PID=`cat .$$`
+        if [ "$PID" != "" ] ; then
+            kill -9 $PID
+        fi
+        if [ -x $UMA_HOME/bin/uma.listend ]; then
+                echo "Starting Infrauma: "
+                cd $UMA_HOME/bin
+                echo =========================================================
+                echo Agent Registrating - agentreg loading....
+                $UMA_HOME/bin/agentreg&
+                if [ "$?" -ne "0" ] ; then
+                echo Agent Registrating failed....
+                echo =========================================================
+                else
+                echo Agent Registrating successed....
+                echo =========================================================
+                fi
+
+                echo Asset Registrating - svrinfo loading....
+                $UMA_HOME/bin/svrinfo&
+                if [ "$?" -ne "0" ] ; then
+                echo Asset Registration Fail !!!
+                echo =========================================================
+                else
+                echo Asset Registration Success !!!
+                echo =========================================================
+                fi
+
+                echo Agent scheduler loading....
+                $UMA_HOME/bin/sch.sh
+                if [ "$?" -ne "0" ] ; then
+                    exit 1
+                fi
+
+                echo Shell Agent scheduler loading....
+                $UMA_HOME/bin/shsch.sh
+                if [ "$?" -ne "0" ] ; then
+                    exit 1
+                fi
+
+                echo Agent uma.listend loading....
+                $UMA_HOME/bin/umaagent.sh
+                if [ "$?" -ne "0" ] ; then
+                    exit 1
+                fi
+
+                echo control - uma.controld loading....
+                ./uma.controld -n
+                if [ "$?" -ne "0" ] ; then
+                echo Agent uma.controld start is fail !!!!!!!
+                echo At First, uma.controld is to stop or kill.
+                echo Second, if uma.controld tcp port is listend status, you are reboot to machine.
+                echo Third, if uma.controld tcp port is TIME_WAIT,FIN_WAIT, you are repeat after some time
+                echo ===========================================================================
+                    exit 0
+                else
+                echo Agent uma.controld start is success !!!!!!!
+                echo =========================================================
+                fi
+        fi
+        ;;
+
+'stop')
+        echo "Stopping Infrauma: "
+        /bin/ps -ef | grep uma.listend | grep -v grep | /bin/awk ' { print $2 } ' > .$$
+        PID=`cat .$$`
+        if [ "$PID" != "" ] ; then
+            kill -9 $PID
+        fi
+        /bin/ps -ef | grep umaagent | grep -v grep | /bin/awk ' { print $2 } ' > .$$
+        PID=`cat .$$`
+        if [ "$PID" != "" ] ; then
+            kill -9 $PID
+        fi
+        /bin/ps -ef | grep "scheduler -n start" | grep -v grep | /bin/awk ' { print $2 } ' > .$$
+        PID=`cat .$$`
+        if [ "$PID" != "" ] ; then
+            kill -9 $PID
+        fi
+        /bin/ps -ef | grep "shscheduler -n start" | grep -v grep | /bin/awk ' { print $2 } ' > .$$
+        PID=`cat .$$`
+        if [ "$PID" != "" ] ; then
+            kill -9 $PID
+        fi
+        /bin/ps -ef | grep sysmaster | grep -v grep | /bin/awk ' { print $2 } ' > .$$
+        PID=`cat .$$`
+        if [ "$PID" != "" ] ; then
+            kill -9 $PID
+        fi
+        /bin/ps -ef | grep "rtmon -n start" | grep -v grep | /bin/awk ' { print $2 } ' > .$$
+        PID=`cat .$$`
+        if [ "$PID" != "" ] ; then
+            kill -9 $PID
+        fi
+        ;;
+
+*)
+        echo "Usage: $0 { start | stop }"
+        exit 1
+        ;;
+esac
+
+exit 0
+

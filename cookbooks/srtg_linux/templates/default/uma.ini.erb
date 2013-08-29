@@ -1,0 +1,15 @@
+# for uma.listend -uumaagent umaagent
+[umaagent]
+address=<%= @agent_ip %>
+port=<%= @agent_port %>
+appkey=umaagent
+mode=server
+tmpdir=<%= @temp_dir %>
+
+[umaftpd]
+address=<%= @agent_ip %>
+port=20007
+appkey=umaftpd
+mode=server
+tmpdir=/tmp
+

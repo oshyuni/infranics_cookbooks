@@ -1,0 +1,84 @@
+
+[config]
+
+  agentver=<%= @agent_version %>
+  installdir=<%= @install_dir %>
+  installedosver=<%= @installed_osverion %>
+  hostname=<%= @host_name %>
+  oraclehome=/home/oracle/OraHome1
+  oraclebin=/bin/sqlplus
+  oraclesid=uma
+  oraversion=8.1.6
+  userid=uma
+  passwd=agent
+  kmdir=kmdata
+  datadir=<%= @data_dir %>
+  tmpdata=tmp/rxtents.rst
+  errlog=tmp/dbagent.err
+  period=5
+  masterip=<%= @master_ip %>
+  primaryip=<%= @primary_ip %>
+  secondaryip=<%= @secondary_ip %>
+  dataport=<%= @data_port %>
+  eventport=<%= @event_port %>
+  mccport=<%= @mcc_port %>
+  realtimeport=<%= @realtime_port %>
+  shellport=<%= @shell_port %>
+  rtperiod=<%= @realtime_period %>
+  ctrlport=<%= @control_port %>
+  sbindir=/usr/sbin
+  bindir=/bin
+  resendfaultmsg=Y
+  tmpdir=/tmp
+  wio=Y
+  sendfault=N
+  ipmode=P
+  signallog=Y
+  nonmem=Y
+  swinv=N
+  hoursaveday=28
+  baselineweek=4
+  baselinesaveday=28
+  membyscript=N
+  memscript=/usr/infrauma/agent/script/zonestat.sh
+
+[admin]
+
+  ostype=linux
+
+[sun]
+
+  mounttype=ufs,zfs,nfs,NULL
+  reboot=reboot
+  shutdown=shutdown -i 5 -g 0 -y
+
+[hp]
+
+  mounttype=hfs,vxfs,dfs,NULL
+  reboot=shutdown -r -y
+  shutdown=shutdown -h -y
+
+[aix]
+
+  mounttype=jfs,jfs2,NULL
+  reboot=reboot
+  shutdown=shutdown -Fh
+
+[linux]
+
+  mounttype=ext2,ext3,ext4,xfs,tmpfs,NULL
+  reboot=shutdown -r now
+  shutdown=shutdown -h now
+
+[freebsd]
+
+  mounttype=ufs,NULL
+  reboot=shutdown -r now
+  shutdown=shutdown -p now
+
+[osf1]
+
+  mounttype=advfs,NULL
+  reboot=shutdown -r now
+  shutdown=shutdown -h now
+
