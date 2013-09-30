@@ -6,7 +6,7 @@ description      'Installs/Configures srtg_core'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '7.0.0'
 
-supports "ubuntu", "~> 12.04.0"
+#supports "ubuntu", "~> 12.04.0"
 
 depends "rightscale"
 
