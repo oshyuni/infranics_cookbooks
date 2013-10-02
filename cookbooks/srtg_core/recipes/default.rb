@@ -9,7 +9,6 @@
 
 rightscale_marker :begin
 
-
 log "  Setting provider specific settings for SRTG core."
 
 log "Loading File SRTG core..."  
